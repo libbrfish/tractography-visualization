@@ -8,11 +8,11 @@ function [tab] = tracks2array (filename)
         conv=read_mrtrix_tracks(filename);
         tab=conv.data;
 
-        for i=1:length(tab) % solve problem mrtrix coords at 0 and nii_reader flip
-            tab{i}(:,3) = abs(tab{i}(:,3)) + 1;
-            tab{i}(:,2) = 129 - tab{i}(:,2);
-            tab{i}(:,1) = 129 - tab{i}(:,1);
-        end
+        % for i=1:length(tab) % solve problem mrtrix coords at 0 and nii_reader flip
+        %     tab{i}(:,3) = abs(tab{i}(:,3)) + 1;
+        %     tab{i}(:,2) = 129 - tab{i}(:,2);
+        %     tab{i}(:,1) = 129 - tab{i}(:,1);
+        % end
         
     
     

@@ -2,6 +2,14 @@
 
 This codes provides tools for the visualization of tractography fibers. It offers post-processing algorithms to filter the fibers and to select the best points of views on a 3D scene with nerves and tumor.
 
+## Johannes Devos
+1. First convert the tck file to utilize the voxel coordinates (using -scanner2voxel)
+2. Load in the tck file into the matlab script. By commenting some lines in the image2array function, the coordinates are kept unchanged.
+3. Results can be found in dir Results/Filter/... (filtered_nerve_##.txt)
+4. Use Shell/split_file_per_line.sh to convert this txt file into txt files per streamline.
+5. Use tckconvert to convert these txt files back to a tck file (e.g. tckconvert temp-'[]'.txt temp.tck -voxel2scanner ../../proc/fod/wmfod_reg.mif)
+
+
 ## Input data
 
 The input data taken by this code is a file of tractography fibers produced by a tractography software. The format of the data can be **Mrtrix tck file** or **DSIstudio txt file**. If the fibers were produced by Mrtrix, please make sure to use voxel coordinates. To convert your result to voxel coordinates, you can use the function tckconvert of Mrtrix, as described in the shell script you can find on the *Shell* folder. If you want to add a segmentation to the visualization (e.g. a tumor) it must be provided as a **binary image in nifti format**. The segmentations made using DSIstudio are compatible with the code, but any other segmentation might result in wrong placement. Sample data of tracked cranial nerves and cranial tumor segmentation is provided in the *Data* folder. 
