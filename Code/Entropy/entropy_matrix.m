@@ -20,23 +20,29 @@ function [E, bounds, pixnerve] = entropy_matrix(filename, init_size, param)
     
     fprintf('%s\n', "Computing entropy matrix...");
     nerve = tracks2array(filename);
+    fprintf('%s\n', "Nerve file loaded...");
     
     if size(nerve,2) < 20
         error('Empty file or not enought fibers');
     end
     
     % Crop image for computation cost 
-    [crop_nerve, dim, bounds] = crop1(nerve, init_size, []); 
+    [crop_nerve, dim, bounds] = crop1(nerve, init_size, []);
+    fprintf('%s\n', "Image cropped...");
     
     % Creates image and resample x3
-    [pixnerve, I] = fib_3D_image(crop_nerve, 3, dim); 
+    [pixnerve, I] = fib_3D_image(crop_nerve, 3, dim);
+    fprintf('%s\n', "Fib3d image generated...");
    
     % Creates vector field
-    DT = im2field(I); 
+    DT = im2field(I);
+    fprintf('%s\n', "Vector field generated...");
     
     % Computes entropy matrices
     [T, P] = find_bins(60);
     Emat = cell(1, size(param, 1));
+    fprintf('%s\n', "Entropy matrices computed...");
+
     
     % Use same matrix size for C wraped code
     DT_fill = nan(init_size*3);

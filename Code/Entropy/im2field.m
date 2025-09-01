@@ -10,6 +10,7 @@ function [DT] = im2field(I)
     % I : 3D grayscale image of tractography
     
     [un, vn, wn] = dgvf_calc(I, 200, 0, 0.4, 1,1,1);
+    
     dim = size(un);
     
     % using reorient_mex (speed x7)
