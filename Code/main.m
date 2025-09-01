@@ -17,10 +17,10 @@ addpath('Codegen');
 % Filter one single nerve 
 
 % Path to the nerve
-filename = '/mnt/DATA1/jdvose/Projects/fiber_tracktography_distribution/resources/20250220_sinus_cavernosus/tracts_reg/dynamic_tracks_voxel.tck'; 
+filename = '/mnt/DATA1/jdvose/Projects/fiber_tracktography_distribution/resources/20250220_sinus_cavernosus/tracts_reg_oculomotor/dynamic_tracks_voxel.tck'; 
 
 % Compute the entropy matrix
-[E_NF, bounds_NF, pix_NF] = entropy_matrix(filename, [129,129,27], [3 3 3]);
+[E_NF, bounds_NF, pix_NF] = entropy_matrix(filename, [300,300,100], [3 3 3]);
 show_matrix(E_NF, true)
 
 % Filter the nerve with percentages p and write the result in the result
@@ -31,7 +31,7 @@ p = 0:10:100;
 %%
 % Plots the result in Matlab (for a better rendering, open the txt
 % fiber files in DSI Studio)
-plot_nerve('../Results/Filter/filtered_nerve_10.txt');
+plot_nerve('../Results/Filter/filtered_nerve_30.txt');
 
 %%
 
