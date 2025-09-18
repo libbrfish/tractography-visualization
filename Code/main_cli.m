@@ -1,4 +1,5 @@
-function main_cli(filename, out_dir)
+function main_cli(filename, out_dir, template_nifti)
+%function main_cli(filename, out_dir)
     
 %%
 % Add folders to path
@@ -6,6 +7,7 @@ function main_cli(filename, out_dir)
     thisDir  = fileparts(thisFile);
     addpath(fullfile(thisDir, 'Conversion')); 
     addpath(fullfile(thisDir, 'Entropy'));
+    addpath(fullfile(thisDir, 'Nifti'));
     addpath(fullfile(thisDir, 'Evaluation'));
     addpath(fullfile(thisDir, 'Filtering'));
     addpath(fullfile(thisDir, 'Geometry'));
@@ -32,10 +34,12 @@ function main_cli(filename, out_dir)
     % Filter one single nerve 
 
     % Path to the nerve
-    % filename = '/mnt/DATA1/jdvose/Projects/fiber_tracktography_distribution/resources/20250220_sinus_cavernosus/tracts_reg_oculomotor/dynamic_tracks_voxel.tck'; 
+    % filename = '/mnt/DATA1/jdvose/Projects/fiber_tracktography_distribution/resources/20250220_sinus_cavernosus/tracts_reg_oculomotor/dynamic_tracks_voxel.tck';
+    outPrefix = fullfile(out_dir, "entropy");
 
     % Compute the entropy matrix
-    [E_NF, bounds_NF, pix_NF] = entropy_matrix(filename, [129,129,27], [3 3 3]);
+    % [E_NF, bounds_NF, pix_NF] = entropy_matrix(filename, [129,129,27], [3 3 3]);
+    [E_NF, bounds_NF, pix_NF] = entropy_matrix_to_nii(filename, [129,129,27], [3 3 3], template_nifti, outPrefix);
     show_matrix(E_NF, true)
 
     % Filter the nerve with percentages p and write the result in the result

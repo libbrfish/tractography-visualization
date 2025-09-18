@@ -1,4 +1,4 @@
-function [DT] = im2field(I)
+function [DT, vectorfield, vectorfield2] = im2field(I)
 
     % This function returns a 3D image of the fibers whose coordinates are
     % given in the fib array
@@ -10,6 +10,7 @@ function [DT] = im2field(I)
     % I : 3D grayscale image of tractography
     
     [un, vn, wn] = dgvf_calc(I, 200, 0, 0.4, 1,1,1);
+    vectorfield = cat(4, un, vn, wn);  % r x c x d x 3
     
     dim = size(un);
     
@@ -21,7 +22,8 @@ function [DT] = im2field(I)
     wn_fill = nan([129,129,27]*3);
     wn_fill(1:dim(1), 1:dim(2), 1:dim(3)) = wn;
     
-    [unew, vnew, wnew] = reorient_codegen(un_fill, vn_fill, wn_fill, dim); 
+    [unew, vnew, wnew] = reorient_codegen(un_fill, vn_fill, wn_fill, dim);
+    vectorfield2 = cat(4, unew, vnew, wnew)
      
     %using reorient.m
     %[unew, vnew, wnew] = reorient(un, vn, wn);
