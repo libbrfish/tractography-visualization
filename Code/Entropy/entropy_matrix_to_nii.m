@@ -67,5 +67,7 @@ end
 minV = nanmin(nanmin(nanmin(E)));
 maxV = nanmax(nanmax(nanmax(E)));
 E = (E-minV)/(maxV-minV);
+outFile = [outPrefix '_entropy.nii.gz'];
+write_scalarfield_to_nifti_cropped(E, bounds, refNii, outFile)
 
 end

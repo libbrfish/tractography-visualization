@@ -23,7 +23,7 @@ function [DT, vectorfield, vectorfield2] = im2field(I)
     wn_fill(1:dim(1), 1:dim(2), 1:dim(3)) = wn;
     
     [unew, vnew, wnew] = reorient_codegen(un_fill, vn_fill, wn_fill, dim);
-    vectorfield2 = cat(4, unew, vnew, wnew)
+    vectorfield2 = cat(4, unew, vnew, wnew);
      
     %using reorient.m
     %[unew, vnew, wnew] = reorient(un, vn, wn);

@@ -12,7 +12,7 @@ function [H] = entropy3D_codegen(M, dimM, N, b, BinsTheta, NumPhi) %#codegen
     % histogram of neigbor vectors
     %
     % OUTPUT
-    % H:  x*y*z*2 matrix, containing the values of entropy for each vector
+    % H:  x*y*z matrix, containing the values of entropy for each vector
     
     
     M = M(1:dimM(1), 1:dimM(2), 1:dimM(3), :);

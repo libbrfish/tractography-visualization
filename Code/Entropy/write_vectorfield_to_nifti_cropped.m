@@ -21,10 +21,6 @@ function write_vectorfield_to_nifti_cropped(vectorfield, bounds, ref_filename, n
     vy = imresize3(vectorfield(:,:,:,2), target_size, 'linear');
     vz = imresize3(vectorfield(:,:,:,3), target_size, 'linear');
 
-    % Print range of Cartesian vectors
-    fprintf('vx range: min = %.4f, max = %.4f\n', min(vx(:)), max(vx(:)));
-    fprintf('vy range: min = %.4f, max = %.4f\n', min(vy(:)), max(vy(:)));
-    fprintf('vz range: min = %.4f, max = %.4f\n', min(vz(:)), max(vz(:)));
 
     % Flatten the vectors into 3 x N
 [sx, sy, sz] = size(vx);
@@ -50,9 +46,7 @@ vy = reshape(vec_scanner(2,:), sx, sy, sz);
 vz = reshape(vec_scanner(3,:), sx, sy, sz);
 
 % Print range of Cartesian vectors
-fprintf('vx range: min = %.4f, max = %.4f\n', min(vx(:)), max(vx(:)));
-fprintf('vy range: min = %.4f, max = %.4f\n', min(vy(:)), max(vy(:)));
-fprintf('vz range: min = %.4f, max = %.4f\n', min(vz(:)), max(vz(:)));
+
 
     
     % Allocate 4D volume (same size as reference, 4th dim = 3 for vx, vy, vz)
